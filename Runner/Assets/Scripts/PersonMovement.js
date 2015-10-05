@@ -39,15 +39,15 @@ function movement (){
 				if (cont!= 3 && volar==false){
 						person.AddRelativeForce(Vector3(1,0,0)*250);
 						cont++;
-						//person.velocity=Vector3.zero;
+						person.velocity=Vector3.zero;
 				}
 			}
 			//Raycast hit
 			else {
-				if (hit.transform.gameObject.name == "NormalObstacle"){
+				if (hit.transform.gameObject.tag == "NormalObstacle"){
 					person.velocity=Vector3.zero;
 				}
-				else if (hit.transform.gameObject.name == "ReboundObstacle"){
+				else if (hit.transform.gameObject.tag == "ReboundObstacle"){
 					person.AddRelativeForce(Vector3(-1,0,0)*250);
 					cont--;
 				}
@@ -63,15 +63,15 @@ function movement (){
 				if (cont!= 1 && volar==false){
 					person.AddRelativeForce(Vector3(-1,0,0)*250);
 					cont--;
-					//person.velocity=Vector3.zero;
+					person.velocity=Vector3.zero;
 				}
 			}
 			//Raycast hit
 			else {
-				if (hit.transform.gameObject.name == "NormalObstacle"){
+				if (hit.transform.gameObject.tag == "NormalObstacle"){
 					person.velocity=Vector3.zero;
 				}
-				else if (hit.transform.gameObject.name == "ReboundObstacle"){
+				else if (hit.transform.gameObject.tag == "ReboundObstacle"){
 					person.AddRelativeForce(Vector3(1,0,0)*250);
 					cont++;
 				}
@@ -79,11 +79,9 @@ function movement (){
 		}
 		
 		//Up Key Pressed
-		if (Input.GetKeyDown (KeyCode.UpArrow) && volar==false && person.velocity == Vector3.zero){
-			//olderPosition = person.transform.position.x;
-			person.AddForce(transform.up * 250);
+		if (Input.GetKeyDown (KeyCode.UpArrow) && volar==false){
+			person.AddRelativeForce(transform.up * 250);
 			volar=true;
-			//person.transform.position.x = olderPosition;
 			}
 	}
 
@@ -93,8 +91,11 @@ function movement (){
 function OnCollisionEnter(collision: Collision) {
 	
 	if (collision.gameObject.tag == "rampa")
-		volar=false;
-	
+		volar = false;
+	if (collision.gameObject.tag == "NormalObstacle")
+		volar = false;
+	if (collision.gameObject.tag == "ReboundObstacle")
+		volar = false;
 	//Collision 
 	if (collision.gameObject.tag == "ExploteObstacle"){
 		Destroy(gameObject);
