@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PersonMovement.js">
     <Files>
-      <File FileName="Assets\Scripts\PersonMovement.js" Line="71" Column="35" />
+      <File FileName="Assets\Scripts\PersonMovement.js" Line="41" Column="13" />
       <File FileName="Assets\Scripts\RampaMovement.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

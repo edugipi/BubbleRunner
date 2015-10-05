@@ -1,11 +1,9 @@
 ﻿#pragma strict
 
-
-public var rightDirectionRebound : boolean;
-
 var cont:int; 
 var person:Rigidbody;
 var volar:boolean;
+var olderPosition: float;
 
 function Start () {
  
@@ -21,6 +19,7 @@ function Update () {
 transform.rotation.x = 0;
 transform.rotation.y = 0;
 transform.rotation.z = 0;
+
 movement();
 
 }
@@ -38,8 +37,7 @@ function movement (){
 			if (Physics.Raycast(transform.position, Vector3.right, hit, 1.0) != true){ 
 			
 				if (cont!= 3 && volar==false){
-						rightDirectionRebound = true;
-						person.AddForce(Vector3(1,0,0)*250);
+						person.AddRelativeForce(Vector3(1,0,0)*250);
 						cont++;
 						//person.velocity=Vector3.zero;
 				}
@@ -48,6 +46,10 @@ function movement (){
 			else {
 				if (hit.transform.gameObject.name == "NormalObstacle"){
 					person.velocity=Vector3.zero;
+				}
+				else if (hit.transform.gameObject.name == "ReboundObstacle"){
+					person.AddRelativeForce(Vector3(-1,0,0)*250);
+					cont--;
 				}
 			}
 			
@@ -59,7 +61,6 @@ function movement (){
 			if (Physics.Raycast(transform.position, Vector3.left, hit, 1.0) != true){ 
 				
 				if (cont!= 1 && volar==false){
-					rightDirectionRebound = false;
 					person.AddRelativeForce(Vector3(-1,0,0)*250);
 					cont--;
 					//person.velocity=Vector3.zero;
@@ -70,13 +71,20 @@ function movement (){
 				if (hit.transform.gameObject.name == "NormalObstacle"){
 					person.velocity=Vector3.zero;
 				}
+				else if (hit.transform.gameObject.name == "ReboundObstacle"){
+					person.AddRelativeForce(Vector3(1,0,0)*250);
+					cont++;
+				}
 			}
 		}
 		
 		//Up Key Pressed
-		if (Input.GetKeyDown (KeyCode.UpArrow) && volar==false){
+		if (Input.GetKeyDown (KeyCode.UpArrow) && volar==false && person.velocity == Vector3.zero){
+			//olderPosition = person.transform.position.x;
 			person.AddForce(transform.up * 250);
-			volar=true;}
+			volar=true;
+			//person.transform.position.x = olderPosition;
+			}
 	}
 
 }
@@ -92,5 +100,7 @@ function OnCollisionEnter(collision: Collision) {
 		Destroy(gameObject);
 		Application.LoadLevel("GameOver");
 	}
+	
+	
 }
 

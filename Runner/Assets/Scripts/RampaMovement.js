@@ -1,11 +1,13 @@
 ﻿#pragma strict
+var objecte:Rigidbody;
 
 function Start () {
+objecte = GetComponent.<Rigidbody>();
 
 }
 
 function Update () {
 
-transform.position.z -= 0.5;
+objecte.velocity = Vector3(0,0,-20);
 
 }
