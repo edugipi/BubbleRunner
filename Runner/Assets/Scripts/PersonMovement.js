@@ -1,18 +1,22 @@
 ﻿#pragma strict
 
-var cont:int; 
+var cont:int;
+var speed:float; 
 var person:Rigidbody;
-var volar:boolean;
-var olderPosition: float;
+//Swipe Variables
 var firstPressPos:Vector2;
 var secondPressPos:Vector2;
 var currentSwipe:Vector2;
 var swipeUp:boolean;
 var swipeLeft:boolean;
 var swipeRight:boolean;
+//Bools
+var moving:boolean;
+var volar:boolean;
 
 function Start () {
  
+ speed = 0.2f;
  transform.position.x = 0;
  cont = 2;
  person = GetComponent.<Rigidbody>();
@@ -20,6 +24,7 @@ function Start () {
 }
 
 function Update () {
+
 
 
 transform.rotation.x = 0;
@@ -43,10 +48,11 @@ function movement (){
 			//Raycast not hitting
 			if (Physics.Raycast(transform.position, Vector3.right, hit, 1.0) != true){ 
 			
-				if (cont!= 3 && volar==false){
-						person.AddRelativeForce(Vector3(1,0,0)*250);
-						cont++;
-						person.velocity=Vector3.zero;
+				if (cont!= 3 ){
+					if (volar==false){
+							StartCoroutine(MoveFromTo(transform.position,Vector3(transform.position.x+1,0,0),speed, true));
+							
+					}
 				}
 			}
 			//Raycast hit
@@ -55,11 +61,10 @@ function movement (){
 					person.velocity=Vector3.zero;
 				}
 				else if (hit.transform.gameObject.tag == "ReboundObstacle"){
-					person.AddRelativeForce(Vector3(-1,0,0)*250);
-					cont--;
+					StartCoroutine(MoveFromTo(transform.position,Vector3(transform.position.x-1,0,0),speed, false));
+					
 				}
-			}
-			//swipeRight = false;	
+			}	
 		}
 		
 		//Left Key Press
@@ -67,10 +72,10 @@ function movement (){
 			//Raycast not hitting
 			if (Physics.Raycast(transform.position, Vector3.left, hit, 1.0) != true){ 
 				
-				if (cont!= 1 && volar==false){
-					person.AddRelativeForce(Vector3(-1,0,0)*250);
-					cont--;
-					person.velocity=Vector3.zero;
+				if (cont!= 1){ 
+					if(volar==false){
+						StartCoroutine(MoveFromTo(transform.position,Vector3(transform.position.x-1,0,0),speed, false));
+					}
 				}
 			}
 			//Raycast hit
@@ -79,18 +84,15 @@ function movement (){
 					person.velocity=Vector3.zero;
 				}
 				else if (hit.transform.gameObject.tag == "ReboundObstacle"){
-					person.AddRelativeForce(Vector3(1,0,0)*250);
-					cont++;
+					StartCoroutine(MoveFromTo(transform.position,Vector3(transform.position.x+1,0,0),speed, true));
 				}
 			}
-			//swipeLeft = false;
 		}
 		
 		//Up Key Pressed
 		if (Input.GetKeyDown (KeyCode.UpArrow) && volar==false || swipeUp == true && volar==false){
 			person.AddRelativeForce(transform.up * 250);
 			volar=true;
-			//swipeUp = false;
 			}
 	}
 	swipeRight = false;
@@ -153,3 +155,19 @@ public function Swipe () {
 	}
 
 }
+
+function MoveFromTo(pointA:Vector3, pointB:Vector3, time:float, right:boolean){
+
+	if (!moving && !volar) {                     // Do nothing if already moving
+         moving = true;                 // Set flag to true
+         var t : float = 0f;
+         while (t < 1.0f) {
+             t += Time.deltaTime / time; // Sweeps from 0 to 1 in time seconds
+             transform.position = Vector3.Lerp(pointA, pointB, t); // Set position proportional to t
+             yield;         // Leave the routine and return here in the next frame
+         }
+         moving = false;             // Finished moving
+         if (right) cont++;
+         else cont--;
+     }
+ }

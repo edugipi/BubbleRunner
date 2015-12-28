@@ -2,9 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PersonMovement.js">
     <Files>
-      <File FileName="Assets\Scripts\SwipeMovement.js" Line="3" Column="1" />
-      <File FileName="Assets\Scripts\PersonMovement.js" Line="98" Column="18" />
-      <File FileName="Assets\Scripts\RampaMovement.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PersonMovement.js" Line="19" Column="13" />
+      <File FileName="Assets\Scripts\SwipeMovement.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
