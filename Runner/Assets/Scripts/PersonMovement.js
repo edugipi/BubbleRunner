@@ -104,10 +104,7 @@ function Movement (){
 function Divide(){
 	Instantiate(person1, Vector3(-1, 0, 0), Quaternion.identity);
  	Instantiate(person2, Vector3(1, 0, 0), Quaternion.identity);
- 	Destroy(this.gameObject);
- 	
- 	//StartCoroutine(MoveFromTo(transform.position,Vector3(transform.position.x-1,0,0),speed, false));
- 	
+ 	Destroy(this.gameObject); 	
 }
 
 function OnKeyPressed(){

@@ -3,6 +3,7 @@
 var cont:int;
 var speed:float; 
 var person:Rigidbody;
+var person0:GameObject;
 //Swipe Variables
 var firstPressPos:Vector2;
 var secondPressPos:Vector2;
@@ -31,6 +32,7 @@ transform.rotation.z = 0;
 
 Movement();
 Swipe();
+OnKeyPressed();
 
 }
 
@@ -97,7 +99,17 @@ function Movement (){
 	swipeLeft = false;
 	swipeUp = false;	
 }
-	
+
+function Divide(){
+
+	Instantiate(person0, Vector3(0, 0, 0), Quaternion.identity);
+ 	Destroy(this.gameObject); 	
+}
+
+function OnKeyPressed(){
+	if (Input.GetKeyDown("y")) Divide();
+}	
+			
 //Collision with GameObjects
 function OnCollisionEnter(collision: Collision) {
 	

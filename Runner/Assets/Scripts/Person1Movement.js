@@ -31,6 +31,7 @@ transform.rotation.z = 0;
 
 Movement();
 Swipe();
+OnKeyPressed();
 
 }
 
@@ -97,7 +98,13 @@ function Movement (){
 	swipeLeft = false;
 	swipeUp = false;	
 }
-	
+
+
+function OnKeyPressed(){
+	if (Input.GetKeyDown("y")) Destroy(this.gameObject);
+}	
+			
+			
 //Collision with GameObjects
 function OnCollisionEnter(collision: Collision) {
 	
