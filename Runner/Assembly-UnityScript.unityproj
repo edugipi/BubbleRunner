@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DivisionMovement.js" />
      <Compile Include="Assets\Scripts\ObstacleMovement.js" />
+     <Compile Include="Assets\Scripts\Person1Movement.js" />
+     <Compile Include="Assets\Scripts\Person2Movement.js" />
      <Compile Include="Assets\Scripts\PersonMovement.js" />
      <Compile Include="Assets\Scripts\SwipeMovement.js" />
  <Reference Include="UnityEngine.UI">

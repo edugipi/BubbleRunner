@@ -3,8 +3,6 @@
 var cont:int;
 var speed:float; 
 var person:Rigidbody;
-var person1:GameObject;
-var person2:GameObject;
 //Swipe Variables
 var firstPressPos:Vector2;
 var secondPressPos:Vector2;
@@ -20,7 +18,7 @@ function Start () {
  
  speed = 0.2f;
  //transform.position.x = 0;
- cont = 2;
+ cont = 1;
  person = GetComponent.<Rigidbody>();
  
 }
@@ -33,7 +31,6 @@ transform.rotation.z = 0;
 
 Movement();
 Swipe();
-OnKeyPressed();
 
 }
 
@@ -99,19 +96,6 @@ function Movement (){
 	swipeRight = false;
 	swipeLeft = false;
 	swipeUp = false;	
-}
-
-function Divide(){
-	Instantiate(person1, Vector3(-1, 0, 0), Quaternion.identity);
- 	Instantiate(person2, Vector3(1, 0, 0), Quaternion.identity);
- 	Destroy(this.gameObject);
- 	
- 	//StartCoroutine(MoveFromTo(transform.position,Vector3(transform.position.x-1,0,0),speed, false));
- 	
-}
-
-function OnKeyPressed(){
-	if (Input.GetKeyDown("y")) Divide();
 }
 	
 //Collision with GameObjects
@@ -183,5 +167,5 @@ function MoveFromTo(pointA:Vector3, pointB:Vector3, time:float, right:boolean){
          moving = false;             // Finished moving
          if (right) cont++;
          else cont--;
-     }
- }
+	}
+}

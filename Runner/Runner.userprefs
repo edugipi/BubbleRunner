@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PersonMovement.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Person1Movement.js">
     <Files>
-      <File FileName="Assets\Scripts\PersonMovement.js" Line="19" Column="13" />
-      <File FileName="Assets\Scripts\SwipeMovement.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PersonMovement.js" Line="107" Column="26" />
+      <File FileName="Assets\Scripts\DivisionMovement.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Person2Movement.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Person1Movement.js" Line="21" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
