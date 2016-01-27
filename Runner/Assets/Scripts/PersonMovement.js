@@ -95,6 +95,12 @@ function Movement (){
 			person.AddRelativeForce(transform.up * 250);
 			volar=true;
 			}
+			
+		if (Physics.Raycast(transform.position, Vector3.forward, hit, 1.0) == true){
+			if (hit.transform.gameObject.tag == "DivisionObstacle"){
+				Divide();
+			}
+		}
 	}
 	swipeRight = false;
 	swipeLeft = false;

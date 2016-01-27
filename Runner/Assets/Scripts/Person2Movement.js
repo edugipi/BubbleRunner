@@ -107,6 +107,7 @@ function Divide(){
 }
 
 function OnKeyPressed(){
+var hit : RaycastHit;
 	if (Input.GetKeyDown("y")) Divide();
 }	
 			
@@ -123,9 +124,7 @@ function OnCollisionEnter(collision: Collision) {
 	if (collision.gameObject.tag == "ExploteObstacle"){
 		Destroy(gameObject);
 		Application.LoadLevel("GameOver");
-	}
-	
-	
+	}	
 }
 
 public function Swipe () {
